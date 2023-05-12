@@ -1,0 +1,205 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+<script>
+        $(document).ready(function () {
+
+
+            $.getJSON("https://mindicador.cl/api", function (datos) {
+                $("#dolar").text("$" + datos.dolar.valor + " CLP");
+                $("#uf").text("$" + datos.uf.valor + " CLP");
+                $("#ipc").text(datos.ipc.valor + "%");
+
+            }).fail(function () {
+                $("#dolar").text("Esperando conexion...");
+            });
+        });
+    </script>
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+  
+
+
+
+
+  <!---->
+<style>
+   
+    
+    
+    
+    .cont1{
+    text-align: center;
+    margin-top: -230px;
+    margin-left: 300px;
+    margin-right: 50px;
+    margin-bottom: -150px;
+    
+    
+    }
+
+
+    
+    
+    
+    
+    
+   
+    #valor {
+
+        text-align: right;
+        color: #000;
+    }
+
+    #dolar {
+
+        text-align: right;
+        color: orange;
+    }
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+    
+    
+    
+    
+    
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!---->
+ <div class="container-fluid" >
+
+
+
+    <div class="row">
+        <div id="panel-cliente" class="col-md-2">
+            <ul class="nav flex-column">
+                <li>
+                    <h3 style="border-bottom: 1px solid #acacac;">Panel de Admin</h3>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos_adm' %}">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'administrarusuarios' %}">Clientes</a>
+                </li>
+                <p id="valor">Valor dolar:  <h3 id="dolar">....</h3>
+            </ul>
+        </div>
+          
+    <div class="col-md-10">
+     <h1 style="text-align: center;">Listado de usuarios</h1>
+      <div class="table-responsive">
+      <table border="2"  class="table" >
+      <thead class="thead-dark">
+       <tr> 
+           <th>Estado</th>
+           <th>ID</th>
+           <th>Nombre de usuario</th> 
+           <th>Nombre</th>
+           <th>Correo</th>
+           <th>Acciones</th>
+       </tr>
+  
+       <tr>
+        {% for p in lista %}
+       <div class="btn-group">
+           <td class="table-light">{{p.is_active}}</td>
+           <td class="table-light">{{p.id}}</td>
+           <td class="table-light">{{p.username}}</td>
+           <td class="table-light">{{p.first_name}}</td>
+           <td class="table-light">{{p.email}}</td>
+           <td class="table-light"><a role="button" class="btn btn-warning btn-lg" href="{% url 'modificaruser' p.id %}" 
+            >Modificar</a> </td>
+       </tr>
+       {% endfor %}
+  
+       
+    
+         
+     </table>
+     
+     </div>
+     </div>
+    </div>
+  </div>
+  
+
+  
+        
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+{% endblock contenido %}
+
+
+
+
+
+

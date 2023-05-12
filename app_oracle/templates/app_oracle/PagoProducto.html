@@ -1,0 +1,262 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+ 
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<style>
+.cont{
+background: gainsboro;
+height: 1000px;
+width: 100%;
+margin-top: 3%;
+}
+
+.Texto{
+text-align: center;
+
+
+}
+
+
+.btn {
+    width: 200px;
+    padding: 20px;
+    -webkit-appearance: none;
+    color: rgb(3, 1, 1);
+    
+
+}
+.cont1{
+text-align: center;
+}
+
+.mini-menu{
+    width: 230px;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    letter-spacing: 2px;
+    color: #848C8F ;
+    margin: 10px;
+    margin-top: 0px;
+
+}
+.mini-menu ul {
+    list-style: none;
+    margin: 0;
+    padding:0;
+    text-align:left;
+    margin-top: 40px;
+    margin: 10px;
+
+}
+
+.mini-menu > ul > li > a {
+    display: block;	
+    outline: 0;	
+    padding: 1.2em 1em;	
+    text-decoration: none;	
+    color:#3C3D41;	
+    background: #FEFEFE;
+    border-bottom: 1.5px solid #EAEAEA;
+   
+}
+.linea1{
+background: gainsboro;
+height: 700px;
+margin-left: 300px;
+width: 1000px;
+margin-top: -1000px;
+}                            
+
+
+</style>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="cont">
+
+
+
+  </div>
+
+    <div class="linea1">
+     <div class="container" style="margin-top: 50px;">
+      <h3 style="color: #8d8d8d;">Método de pago</h3>
+
+      <div class="row">
+          <div class="col-sm-9">
+              <div class="row no-gutters">
+                  <div class="col-sm-6 mt-2">
+                      <div class="pago">
+                          <a href="">
+                              <img class="img-fluid" src="{% static 'app_oracle/img/transferenciaelectronica.png' %}" alt="transferencia">
+                          </a>
+                          <div class="text-center ml-3">
+                              <input type="radio" class="form-check-input" name="optradio"><br>
+                              Transferencia electrónica
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 mt-2">
+                      <div class="pago">
+                          <a href="">
+                              <img class="img-fluid" src="{% static 'app_oracle/img/webpay.png' %}" alt="transferencia">
+                          </a>
+                          <div class="text-center ml-3">
+                              <input type="radio" class="form-check-input" name="optradio"><br>
+                              Webpay / Mercado Pago / Onepay
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-6 mt-3">
+                      <div class="pago">
+                          <a href="">
+                              <img class="img-fluid" src="{% static 'app_oracle/img/bancoestado.png' %}" alt="transferencia">
+                          </a>
+                          <div class="text-center ml-3">
+                              <input type="radio" class="form-check-input" name="optradio"><br>
+                              Botón de Pago Banco Estado
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="col-sm-6 mt-3">
+                      <div class="pago">
+                          <a href="">
+                              <img class="img-fluid" src=" {% static 'app_oracle/img/santander.png' %}"  alt="transferencia">
+                          </a>
+                          <div class="text-center ml-3">
+                              <input type="radio" class="form-check-input" name="optradio"><br>
+                              Botón de Pago Banco Santander
+                          </div>
+                      </div>
+                      
+                  </div>
+                  
+                  
+
+                  <h3 style="color: #8d8d8d;">Datos de boleta</h3>
+
+                  <div class="col-sm-11 mb-2" style="background-color: rgb(241, 241, 241);">
+                      <table class="table table-responsive-sm">
+                          <thead>
+                              <tr>
+                                  <th>Rut</th>
+                                  <th>Nombre cliente</th>
+                                  <th>Dirección</th>
+                                  <th>Comuna</th>
+                                  <th>Teléfono</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for com in compra %}                       
+                              <tr>
+                                  <td>{{com.rut}}</td>
+                                  <td>{{com.nombrecli}}</td>
+                                  <td>{{com.direccion}}</td>
+                                  <td>{{com.comuna}}</td>
+                                  <td>{{com.telefono}}</td>
+                              </tr>
+                              {% endfor %}   
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <div class="col-sm-11 mt-4">
+                      <a href="{% url 'productos' %}"><button type="button" class="btn btn-danger mb-3 float-left text-white">Volver pagina principal
+                              </button></a>
+                      <a href={% url 'agregarcompra' %}><button type="button" class="btn btn-success mb-3 float-right text-white" 
+                        >Comprar</button></a>
+                  </div>
+
+           
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+    </div>
+
+  
+
+<!------->
+
+<!---Modal -->
+
+<div class="modal fade in" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realizar la compra?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Se tranferirá el pago
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-toggle="modal" href="#stack2">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!----->
+  
+  <div id="stack2" class="modal fade in" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Producto comprado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Gracias por comprar en muestra pagina, su pedido llegara en las siguientes 48 hrs
+        </div>
+        <div class="modal-footer">
+          <a href="intexusuario.html"><button type="button" class="btn btn-success">Volver</button></a>
+        </div>
+      </div>
+    </div>
+    </div>
+  
+
+
+
+ 
+
+
+  
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="a">
+</div>
+  <style>
+  .a{
+    margin-top: 100px;
+  }
+  </style>
+  
+{% endblock contenido %}

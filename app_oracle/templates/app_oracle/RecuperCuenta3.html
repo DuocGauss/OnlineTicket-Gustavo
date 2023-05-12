@@ -1,0 +1,77 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+
+
+
+  
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<style>
+.cont{
+background: gainsboro;
+height: 500px;
+width: 100%;
+margin-top: 3%;
+}
+.Texto{
+text-align: center;
+
+
+}
+
+
+.btn {
+    width: 200px;
+    padding: 20px;
+    -webkit-appearance: none;
+    color: rgb(3, 1, 1);
+    
+
+
+}
+
+</style>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+
+<div class="cont">
+
+
+  <h1 class="Texto">
+    <br>
+    <form class="form" method="GET" action={% url 'intexusuario' %}>
+    <div>
+    Ingrese su nueva contraseña<br><br>
+    <input type="password" placeholder="" class="form__input" name="" aria-describedby="hpsw1" id="psw1"  required/><br><br>
+    Confirme su nueva contraseña <br><br>
+    <input type="password" placeholder="" class="form__input" name="" aria-describedby="helpconf" id="psw2"  oninput="validarpass()" required/><br><br>
+    <a href={% url 'intexusuario' %}><button class="btn btn-primary text-white" type="submit" onclick="validar()">Listo</button>
+    </div>
+    </form>
+  </h1>
+  
+  
+
+
+
+
+
+
+</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="a">
+</div>
+  <style>
+  .a{
+    margin-top: -10px;
+  }
+  </style>
+
+  {% endblock contenido %}
+  

@@ -1,0 +1,66 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block contenido %}
+
+ 
+
+<script>
+  $(document).ready(function(){
+    $("#id_id").attr("readonly",true)
+  });
+</script>
+
+
+  <!------>
+
+<!--Editar Producto  -->
+
+<div class="container" style="margin-top: 50px;">
+    <h6 id="direccion"><a href="index.html">inicio</a> > <a href="Admin.html">administrador </a>> <a
+            href="listaproductos.html">arriendos </a>> <a href="agregarProductoAdmin.html"> modificar arriendo </a>>
+    </h6>
+
+    <form class="form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <h1 style="color: #8d8d8d;"> Modificar Arriendo</h1>
+    </div>
+    <form action="">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                   {{form|crispy}}
+
+                   {% if form %}
+                   <input type="submit" value="Modificar" class="btn btn-warning btn-lg text-white">
+                   {% endif %}
+       
+    </form>
+  </div>
+  {% if mensaje %}
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">{{mensaje}}</h4>
+    <p><a href="{% url 'productos_adm' %}">Volver</a></p>
+    <p class="mb-0"></p>
+  </div>
+  
+  {% endif %}
+ </div>
+ </div>
+ </div>
+
+  <div class="a">
+  </div>
+    <style>
+    .a{
+      margin-top: 200px;
+    }
+    </style>
+ 
+
+{% endblock contenido %}
+
+

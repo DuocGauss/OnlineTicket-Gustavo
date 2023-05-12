@@ -1,0 +1,225 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+
+    
+    
+
+
+  <!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<style>
+
+
+    
+
+
+
+
+.Texto{
+text-align: center;
+
+
+}
+
+
+
+.mini-menu{
+    width: 230px;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    letter-spacing: 2px;
+    color: #848C8F ;
+    margin: 10px;
+    margin-top: 0px;
+
+}
+.mini-menu ul {
+    list-style: none;
+    margin: 0;
+    padding:0;
+    text-align:left;
+    margin-top: 50px;
+    margin: 10px;
+
+}
+
+.mini-menu > ul > li > a {
+    display: block;	
+    outline: 0;	
+    padding: 1.2em 1em;	
+    text-decoration: none;	
+    color:#3C3D41;	
+    background: #FEFEFE;
+    border-bottom: 1.5px solid #EAEAEA;
+   
+}
+
+
+.conti{
+
+    margin-bottom: -100px ;
+    margin-top: -350px;
+    margin-left: 100px;
+    margin-right: auto;
+
+}
+
+.cont{
+    background: gainsboro;
+    height: auto;
+    width: 100%;
+    margin-top: 3%;
+    
+   
+    
+    
+    }
+
+    .cont1{
+        text-align: center;
+        margin-top: -330px;
+        margin-left: 300px;
+        margin-right: 100px;
+        margin-bottom: 250px;
+      
+      
+      }
+
+</style>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+
+
+<div class="cont">
+
+
+    <div class="wrap">
+      <div class="menu">
+          <div class="mini-menu">
+            <ul>
+                <li class="sub">
+                    <a href="Productos.html">Componentes para Pc</a>
+                 
+                </li>
+                <li class="sub">
+                    <a href="ProductosTecnologia.html">Tecnologia</a>
+                 
+                </li>  
+                <li class="sub">
+                  <a href="ProductosConsolas.html">Consolas</a>
+              </li>  
+                  <li class="sub">
+                      <a href="ProductosMonitores.html">Monitores</a>
+               
+                    </li>  
+                    <li class="sub">
+                        <a href="ProductosSillas.html">Sillas </a>
+               
+                      </li>  
+                      <li class="sub">
+                          <a href="ProductosFotografia.html">Fotografia</a>
+                     
+                </li>
+                <li class="sub">
+                    <a href="ProductosDrones.html">Drones</a>
+                 
+                </li>
+            </ul>
+
+           
+  </div>
+  
+  
+  
+
+    
+
+    
+
+  <div class="cont1">
+    
+<div class="row">
+<div class="col-md-9">
+{% if cuenta %}
+        <h3>Usted tiene {{cuenta}} productos en el carrito</h3>
+        {% endif %}
+    </div>
+    </div>
+    
+    <!--Productos-->
+    <div class="container" style="margin-top: 50px;">
+    
+        
+        <div class="row mt-5">
+        
+           
+
+            {% for p in productos %}
+              <div class="col-sm-4 mt-5">
+                <div class="product-list__head">
+                <img class="card-img-top" src="{{p.imagen.url}}" alt="">
+                 <div class="card-body">
+                 <a href="{% url 'confirmacionprod' %}">
+                   <h4 class="card-title">{{p.nombre_est}}</h4>
+                   </a>
+                    <p class="card-text">{{p.descripcion}}</p>
+                    <a href="{% url 'agregarcarrito' p.id p.valor %}" role="button" class="btn btn-success">🛒<p class="card-text">${{p.valor}}</p></a>
+                    
+                </div>
+                 </div>
+                 </div>
+                
+            {% endfor %}
+           
+               
+            
+        </div>
+        
+    </div>
+
+    </div>
+    
+   </div>
+    </div>
+    </div>
+    
+   
+    <div class="a">
+  </div>
+    <style>
+    .a{
+      margin-top: -250px;
+    }
+    </style>    
+    
+
+{% endblock contenido %}

@@ -1,0 +1,248 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<script>
+function AlertaEliminar(id)
+{
+  Swal.fire({
+  title: 'Alerta',
+  text: 'Seguro que quiere eliminar este producto del carrito',
+  icon: 'warning',
+  confirmButtonText: 'Aceptar',
+  confirmButtonColor: 'Red',
+  showCancelButton: true,
+  cancelButtonText: 'Cancelar'
+  }).then(function(resp){
+    if(resp.isConfirmed)
+    {
+        window.location.href="/eliminarcar/" + id
+    }
+  });
+}
+
+</script>
+
+
+<style>
+.cont{
+background: gainsboro;
+height: 900px;
+width: 100%;
+margin-top: 3%;
+
+}
+
+.cont1{
+  text-align: center;
+  margin-top: auto;
+  margin-left: 400px;
+  margin-right: 300px;
+  margin-bottom: auto;
+  
+  
+  }
+
+
+
+
+.linea1{
+background: white;
+height: 140px;
+margin-left: 300px;
+width: 70%;
+margin-top: -700px;
+margin-bottom: 0px;
+
+
+}
+.TituloP1{
+
+margin-left: 10%;
+margin-top: -70px;
+}
+
+.FechaP1{
+
+margin-left: 40%;
+margin-top: -43px;
+}
+
+
+button {
+	font-size: 20px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 16px 0;
+	border-radius: 8px 24px 8px 24px;
+	border: 2px solid orange;
+	background-color: orange;
+	color: #fff;
+	outline: 0;
+	cursor: pointer;
+	margin-top: 8px;
+	margin-left: 30%;
+  
+
+
+}
+
+</style>
+
+  <!------>
+  <div class="cont">
+  <div class="cont1">
+
+<br>
+<h1 id="carro">Carro de compra</h1>
+
+
+<div class="table-responsive">
+<table style="margin: 0 auto;" border="0" width="0%" class="table">
+<thead class="thead-dark">
+<tr>
+<th>ID</th>
+<th>Codigo Producto</th>
+<th>Nombre Cliente</th>
+<th>Valor producto</th>
+<th>Cantidad</th>
+<th>Eliminar</th>
+</tr>
+
+{% for carro in carrito %}
+
+<tr>
+<td class="table-light">{{carro.id}}</td>
+<td class="table-light">{{carro.producto}}</td>
+<td class="table-light">{{carro.cliente}}</td>
+<td class="table-light">{{carro.valor}}</td>
+<td class="table-light"><input type="number" placeholder="1"></td>
+<td class="table-light"><a role="button" class="btn btn-danger btn-lg text-white" onclick="AlertaEliminar({{carro.id}})" 
+>🗑</a></td>
+
+
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+  
+
+<div class="btn-group" role="group" aria-label="">
+  <a href="{% url 'productos' %}"><button type="button" class="boton">Seguir Comprando</button></a>
+  <a href="{% url 'PagoProducto' %}"><button type="button" class="boton">Proceder al pago</button></a>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<!---Modal -->
+
+<div class="modal fade in" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar el producto del carrito de compra?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El producto se eliminara del carrito
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" href="#stack2">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----->
+
+<div id="stack2" class="modal fade in" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Producto eliminado del carrito</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El producto fue eliminado del carrito
+      </div>
+      <div class="modal-footer">
+        <a href="carrito.html" type="button" class="btn btn-success">Volver</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <a href="intex.html">
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="a">
+</div>
+  <style>
+  .a{
+    margin-top: -200px;
+  }
+  </style>
+  
+
+{% endblock contenido %}

@@ -1,0 +1,104 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+  
+  
+   
+  
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<style>
+  .cont{
+    background: gainsboro;
+    height: 500px;
+    width: 100%;
+    margin-top: 3%;
+    
+    
+    }
+#wrapper {
+  font-family: Lato;
+  font-size: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  color: #333;
+  
+
+}
+
+    
+#form {
+  max-width: 550px;
+   margin: 25px auto 0;
+}
+    input {
+      margin:  5px;
+      text-align: center;
+      line-height: 80px;
+      font-size: 50px;
+      border: solid 1px #ccc;
+      box-shadow: 0 0 5px #ccc inset;
+      outline: none;
+      width: 11%;
+      transition: all .2s ease-in-out;
+      border-radius: 3px;
+      
+    }
+      
+    
+    
+    
+
+    
+    
+    
+    
+   
+  
+
+
+</style>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+
+<div class="cont">
+
+
+  <div id="wrapper">
+    <div id="dialog"><br>
+      <h3>Ingrese el codigo que enviamos a su E-mail</h3>
+      <div id="form">
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" /><br>
+        <br><a href={% url 'RecuperCuenta3' %}><button class="btn btn-primary btn-lg" type="submit">Verificar</button></a>
+      </div>
+      
+      <div>
+        <br> ¿No a recibido el codigo?<br /><br>
+        <a href="RecuperarCuenta2.html">Volver a enviar codigo<br/>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="a">
+</div>
+  <style>
+  .a{
+    margin-top: -10px;
+  }
+  </style>
+  
+  {% endblock contenido %}

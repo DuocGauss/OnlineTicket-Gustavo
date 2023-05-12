@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+{% load static %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link rel="stylesheet" href="{% static 'app_oracle/css/estilo.css' %}">
+  <!-- JavaScript y Jquery -->
+  <script src="{% static 'app_oracle/js/main.js' %}"></script>
+  <script src="{% static 'app_oracle/js/cart.js' %}"></script>
+  <script type="text/javascript" src="{% static 'app_oracle/js/jquery-3.6.0.min.js' %}"></script>
+   
+   
+
+  <title>{% block title %}OnLineTicket - Inicio {%endblock%}</title>
+</head>
+
+<body>
+
+  <!-- Nav top -->
+  <div class="topnav">
+    <nav id="top" class="navbar navbar-expand-md navbar-light" style="background: linear-gradient(90deg, rgba(249,66,58,1) 0%, rgba(112,43,222,1) 100%);">
+      <!-- Brand -->
+      <a class="navbar-brand" href="{% url 'intex' %}"><img id="logo" style="height: 50px; width: 100px;" src="{% static 'app_oracle/img/onlineticket.png' %}"
+          alt="logo lmgas"></a>
+      
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+
+      <!-- Navbar links -->
+      
+    
+      <!-- -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        
+          {% block topnav %}
+          <ul class="navbar-nav mr-auto">
+            
+          <li class="nav-item">
+            <a class="nav-link lead text-light" href="{% url 'intex' %}">Inicio</a>
+          </li>
+        
+          <!---->
+          
+        
+
+          
+
+         
+          <li class="nav-item">
+            
+          </li>
+           </ul>
+           
+           <form class="form-inline my-2 my-lg-0 ml-auto">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+          <button  class="btn btn-outline-success my-2 my-sm-0 bg-primary text-light border-primary"
+            type="submit">Buscar</button>
+        </form>
+
+        {% if user.is_authenticated %}
+        
+         <ul id="listatop" class="navbar-nav ml-auto"> 
+          <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'GestionUsuario' %}" >
+              Perfil
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'logout' %}">
+               Cerrar Sesión
+            </a>
+          </li>
+          {% if user.is_staff %}
+          <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'productos_adm' %}">
+              Administrador
+            </a>
+          </li>
+          </ul>
+          
+          
+          {% comment %} <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'Carrito' %}">
+              <ion-icon name="cart-outline"></ion-icon> Carro ({{cant}})
+            </a>
+          </li> {% endcomment %}
+          {% endif %}
+          {% else %}
+          <ul id="listatop" class="navbar-nav ml-auto"> 
+          <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'login' %}">
+              Iniciar Sesión
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link lead text-light" href="{% url 'crearcuenta' %}">
+              Registrarse
+            </a>
+          </li>
+          </ul>
+          {% endif %} 
+          {% endblock topnav %}
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- Links -->
+
+    <!-- Navbar principal -->
+    <div class="col-sm-8">
+      <nav class="navbar navbar-expand-sm navbar-dark mt-5" id="navprincipal">
+      
+       
+        
+      </nav>
+    </div>
+  </div>
+
+  {% block contenido %}
+
+
+  {% endblock contenido %}
+
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start">
+    <!-- Grid container -->
+    <div id="pie" style="background: linear-gradient(90deg, rgba(112,43,222,1) 0%, rgba(249,66,58,1) 100%);" class="p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light">OnLineTicket</h5>
+
+          <ul id="sin-sub" class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-light">Quienes somos</a>
+            </li>
+            <li>
+              
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light">Normativas</h5>
+
+          <ul id="sin-sub" class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-light">Modelo de Prevención de Delitos</a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">Línea de denuncias</a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">Decretos de Ley</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light mb-0">Ayuda</h5>
+
+          <ul id="sin-sub" class="list-unstyled">
+            <li>
+              <a href="#!" class="text-light">Sucursal virtual</a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">Ayuda</a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-light">Redes Sociales</h5>
+
+          <ul id="sin-sub" class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-light">
+                <ion-icon name="logo-instagram" style="margin-right: 10px; font-size: 20px;"></ion-icon>Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">
+                <ion-icon name="logo-facebook" style="margin-right: 10px; font-size: 20px;"></ion-icon>Facebook
+              </a>
+            </li>
+            <li>
+              <a href="#!" class="text-light">
+                <ion-icon name="logo-twitter" style="margin-right: 10px; font-size: 20px;"></ion-icon>Twitter
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-dark" href="index.html">www.OnlineTicket.cl</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+{% block contenido %}
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container" style="margin-top: 50px;">
+  <div class="row">
+
+<!--Carrousel-->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'app_oracle/img/hardwellbanner.jpeg' %}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'app_oracle/img/rehabbanner1.png' %}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'app_oracle/img/metalicabanner.png' %}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+ 
+    <!--Productos-->
+      <div class="container" style="margin-top: 50px;">
+    <div class="row" >
+
+      <div class="col-md-3">
+    <div class="card border-warning mb-3">
+        <a href="{%url 'confirmacionprod'%}"><img class="card-img-top" src="{% static 'app_oracle/img/evento1.jpg' %}"
+            alt="Producto"></a>
+        <div class="card-body" style="text-align: center;">
+          <h7 class="card-tile">David Guetta</h7>
+          <p class="card-text"><ion-icon name="ticket-outline"></ion-icon> 8.000&nbsp;$</p>
+        </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-warning mb-3" style="width: 100%; margin: 5px 5px;">
+            <a href="{%url 'confirmacionprod'%}"><img class="card-img-top" src="{% static 'app_oracle/img/evento2.jpg' %}"
+                alt="Producto"></a>
+            <div class="card-body " style="text-align: center;">
+              <h7 class="card-tile">Europe</h7>
+              <p class="card-text"><ion-icon name="ticket-outline"></ion-icon> 10.000&nbsp;$</p>
+            </div>
+          </div>
+          </div>
+      <div class="col-md-3">
+        <div class="card border-warning mb-3" style="width: 100%; margin: 5px 5px;">
+            <a href="{%url 'confirmacionprod'%}"><img class="card-img-top" src="{% static 'app_oracle/img/evento3.jpg' %}"
+                alt="Producto"></a>
+            <div class="card-body" style="text-align: center;">
+              <h7 class="card-tile">Fonseca</h7>
+              <p class="card-text"><ion-icon name="ticket-outline"></ion-icon> 5.000&nbsp;$</p>
+            </div>
+          </div>
+          </div>
+       <div class="col-md-3">
+            <div class="card border-warning mb-3" style="width: 100%; margin: 5px 5px;">
+                <a href="{%url 'confirmacionprod'%}"><img class="card-img-top" src="{% static 'app_oracle/img/evento4.jpg' %}"
+                    alt="Producto"></a>
+                <div class="card-body" style="text-align: center;">
+                  <h7 class="card-tile">Lasso</h7>
+                  <p class="card-text"><ion-icon name="ticket-outline"></ion-icon> 7.000&nbsp;$</p>
+                </div>
+              </div>
+              </div>  
+    
+    </div>
+    </div>
+       
+
+
+
+
+
+<!--Catalogo dinamico-->
+
+  <div class="container">     
+   <div class="row" >
+      
+      {% for p in productos %}
+              <div class="col-md-3">
+                <div class="card border-warning mb-3" style="width: 100%; margin: 5px 5px;">
+                  <a href="{%url 'confirmar' p.id%}">
+                <img class="card-img-top" src="{{p.imagen.url}}" alt=""></a>
+                 <div class="card-body" style="text-align: center;">
+                   <p class="card-title">{{p.nombre_est}}</p>
+                   <p class="card-text"><ion-icon name="ticket-outline"></ion-icon> {{p.valor}}&nbsp;$</p>
+                </div>
+                 </div>
+                 </div>
+                
+            {% endfor %}
+           
+               
+            
+        </div>
+        
+    </div>
+
+    </div>
+    </div>
+  
+  <!--distribuidores-->
+ 
+    
+         
+      
+  
+
+{% endblock contenido %}

@@ -1,0 +1,335 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<style>
+.cont{
+background: gainsboro;
+height: 800px;
+width: 100%;
+margin-top: 3%;
+}
+
+.Texto{
+text-align: center;
+
+
+}
+
+
+.btn {
+    width: 200px;
+    padding: 20px;
+    -webkit-appearance: none;
+    color: rgb(3, 1, 1);
+    
+
+}
+.cont1{
+text-align: center;
+margin-top: -130px;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-bottom: -150px;
+    
+}
+
+.mini-menu{
+    width: 230px;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    letter-spacing: 2px;
+    color: #848C8F ;
+    margin: 10px;
+    margin-top: 0px;
+
+}
+.mini-menu ul {
+    list-style: none;
+    margin: 0;
+    padding:0;
+    text-align:left;
+    margin-top: 40px;
+    margin: 10px;
+
+}
+
+.mini-menu > ul > li > a {
+    display: block;	
+    outline: 0;	
+    padding: 1.2em 1em;	
+    text-decoration: none;	
+    color:#3C3D41;	
+    background: #FEFEFE;
+    border-bottom: 1.5px solid #EAEAEA;
+   
+}
+.linea1{
+background: white;
+height: 7vw;
+margin-left: 300px;
+width: 77vw;
+margin-top: -160px;
+margin-bottom: 0px;
+
+
+}
+.linea2{
+background: rgb(182, 182, 182);
+height: 7vw;
+margin-left: 300px;
+width: 77vw;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+.linea3{
+background: white;
+height: 7vw;
+margin-left: 300px;
+width: 77vw;
+margin-top: 0px;
+margin-bottom: 0px;
+
+
+}
+.linea4{
+background: rgb(182, 182, 182);
+height: 7vw;
+margin-left: 300px;
+width: 77vw;;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+.linea5{
+background: white;
+height: 7vw;
+margin-left: 300px;
+width: 77vw;
+margin-top: 0px;
+margin-bottom: 0px;
+
+}
+
+.TituloP1{
+
+margin-left: 200px;
+margin-top: -70px;
+}
+.FechaP1{
+
+margin-left: 490px;
+margin-top: -40px;
+}
+
+.IdP1{
+
+margin-left: 750px;
+margin-top: -44px;
+}
+.EstadoOp1{
+
+margin-left: 850px;
+margin-top: -44px;
+color: red;
+}
+.EstadoOp2{
+
+margin-left: 850px;
+margin-top: -44px;
+color: green;
+}
+.EstadoOp3{
+
+margin-left: 850px;
+margin-top: -44px;
+color: green;
+}
+
+.EstadoOp4{
+
+margin-left: 850px;
+margin-top: -44px;
+color: green;
+}
+.imgflechas1{
+
+  margin-left: 1100px;
+margin-top: -60px;
+
+}
+
+.r:visited {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+</style>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="cont">
+
+
+  <div class="wrap">
+    <div class="menu">
+        <div class="mini-menu">
+            <ul>
+        <li class="sub">
+            <a href="{% url 'GestionUsuario' %}">Gestion de Usuario</a>
+         
+        </li>
+        <li class="sub">
+            <a href="{% url 'Ordendecompra' %}">Historial de Compra</a>
+         
+
+        <li class="sub">
+            <a href="{% url 'intex' %}">Cerrar Sesion</a>
+         
+        </li>
+    </ul>
+
+  </div>
+
+  <div class="cont1">
+  <h1>Historial de compras</h1>
+  <div class="table-responsive">
+    <table style="margin: 0 auto;" border="1" width="60%" class="table" >
+    <thead>
+     <tr class="thead-dark">
+       <th>Rut</th>
+       <th>Cliente</th>
+       <th>Dirección</th>
+       <th>Comuna</th>
+       <th>Telefono</th>
+     </tr>
+     {% for ped in Pedidos %}
+     <tr> 
+      <td class="table-light">{{ped.rut}}</td> 
+      <td class="table-light"> {{ped.nombrecli}}</td>
+         <td class="table-light">{{ped.direccion}}</td>
+         <td class="table-light">{{ped.comuna}}</td>
+         <td class="table-light">{{ped.telefono}}</td>
+          
+
+     </tr>
+     {% endfor %}
+       
+   </table>
+  </div>
+   </div>
+   </div>
+
+<!------------->
+
+
+
+
+
+<!-- Modal cancelar pedido -->
+<div class="modal fade in" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cancelar su producto?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Desea enviar una solicitud para cancelar su pedido? Si cancela tiene 
+        hasta 24 hrs para anular la petición (se puede tardar hasta 48 hrs en responder)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" href="#stack2">Enviar petición</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<!----->
+
+<div id="stack2" class="modal fade in" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Petición enviada</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se le mandara un correo electronico para confirmar la cancelación del pedido más su reembolso
+      </div>
+      <div class="modal-footer">
+        <a href="Ordendecompra.html" type="button" class="btn btn-warning text-dark">Cerrar</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+ 
+
+
+<!-- Modal pedido recibido-->
+
+
+<!-- Modal -->
+<div class="modal fade in" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usted ha recibido su pedido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Su pedido fue entregado a su hogar el 22/05/2021
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+   
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<div class="a">
+</div>
+  <style>
+  .a{
+    margin-top: 600px;
+  }
+  </style>
+  
+
+  {% endblock contenido %}

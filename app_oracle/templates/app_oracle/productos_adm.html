@@ -1,0 +1,194 @@
+{% extends 'app_oracle/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<script>
+function AlertaEliminar(id)
+{
+  Swal.fire({
+  title: 'Alerta',
+  text: 'Esta apunto de eliminar un producto',
+  icon: 'warning',
+  confirmButtonText: 'Continuar',
+  confirmButtonColor: 'Red',
+  showCancelButton: true,
+  cancelButtonText: 'Cancelar'
+  }).then(function(resp){
+    if(resp.isConfirmed)
+    {
+        window.location.href="/eliminarprod/" + id
+    }
+  });
+}
+
+</script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            $.getJSON("https://mindicador.cl/api", function (datos) {
+                $("#dolar").text("$" + datos.dolar.valor + " CLP");
+                $("#uf").text("$" + datos.uf.valor + " CLP");
+                $("#ipc").text(datos.ipc.valor + "%");
+
+            }).fail(function () {
+                $("#dolar").text("Esperando conexion...");
+            });
+        });
+        </script>
+
+<!---->
+  
+
+
+
+
+  <!------>
+
+  <style>
+    
+    
+    
+    
+    .cont1{
+      text-align: center;
+      margin-top: -230px;
+      margin-left: 300px;
+      margin-right: 100px;
+      margin-bottom: -150px;
+    
+    
+    }
+    
+    
+   
+
+    #valor {
+
+        text-align: right;
+        color: #000;
+    }
+
+    #dolar {
+
+        text-align: right;
+        color: orange;
+    }
+
+   
+    
+    
+    
+    
+    
+    </style>
+
+  <!------>
+
+  <div class="container-fluid">
+
+
+
+    <div class="row">
+        <div id="panel-cliente" class="col-sm-2">
+            <ul class="nav flex-column">
+                <li>
+                    <h3 style="border-bottom: 1px solid #acacac;">Panel de Admin</h3>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos_adm' %}">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'administrarusuarios' %}">Clientes</a>
+                </li>
+               
+                <p id="valor">Valor dolar:  <h3 id="dolar">....</h3>
+            </ul>
+        </div>
+    
+    
+      <div class="col-md-10">  
+      <h1 style="text-align: center;">Listado de reservas</h1>
+      <div class="table-responsive">
+      <table border="2"  class="table" >
+      <thead class="thead-dark">
+       <tr>
+          <th>Imagen</th> 
+           <th>ID</th> 
+           <th>Nombre</th>
+           <th>Descripción</th>
+           <th>Valor</th>
+           <th>Estado</th>
+           <th>Modificar</th>
+       </tr>
+       
+       <tr>
+        {% for prod in Productos %}
+        <div class="btn-group">
+           <td class="table-light">{{prod.imagen}}</td>
+           <td class="table-light">{{prod.id}}</td>
+           <td class="table-light">{{prod.nombre_est}}</td>
+           <td class="table-light">{{prod.descripcion}}</td>
+           <td class="table-light">{{prod.valor}}</td>
+           <td class="table-light">{{prod.estado}}</td>
+           <td class="table-light"><a role="button" class="btn btn-warning btn-lg" href="{% url 'modificarprod' prod.id %}" 
+            >📋</a> 
+           <a role="button" class="btn btn-danger btn-lg text-white" onclick="AlertaEliminar({{prod.id}})" 
+           >🗑</a></td>
+       </tr>
+       {% endfor %}
+       
+
+         
+     </table>
+     <div style="text-align: center;">
+     <a  role="button"  class="btn btn-success btn-lg" href="{% url 'agregarproducto' %}">Publicar reserva</a>
+    </div>
+      
+   </div>
+   </div>
+</div>
+</div>
+
+
+
+        
+ 
+
+
+
+
+    
+    
+
+
+ 
+
+
+
+{% endblock contenido %}
+
+
+
+
+
+

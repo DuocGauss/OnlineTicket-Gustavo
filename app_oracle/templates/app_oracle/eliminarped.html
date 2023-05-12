@@ -1,0 +1,66 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+
+
+
+  <!------>
+
+<!--Editar Producto  -->
+
+<div class="container" style="margin-top: 50px;">
+    <h6 id="direccion"><a href="index.html">inicio</a> > <a href="Admin.html">administrador </a>> <a
+            href="listaproductos.html">pedido </a>> <a href="agregarProductoAdmin.html"> eliminar pedido </a>>
+    </h6>
+
+    <form class="form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="alert alert-danger" role="alert">
+        <h3>¿Seguro que desea eliminar este pedido?</h3>
+        <p class="pt-2"><strong>Nombre Cliente:</strong> {{ped.nombrecli}}</p>
+        <p><strong>Direccion:</strong> {{ped.direccion}}</p>
+        <p><strong>Comuna:</strong> {{ped.comuna}}</p>
+        <p><strong>Telefono:</strong> {{ped.telefono}}</p>
+        <p><strong>Rut:</strong> {{ped.rut}}</p>
+        <p><strong>Estado:</strong> {{ped.estado}}</p>
+        <div class="pt-3">
+         <input type="submit" value="Eliminar" class="btn btn-danger btn-lg text-white">
+        </div>
+    
+        
+    </div>
+    <form action="">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                   
+
+                  
+                  
+                   
+       
+    </form>
+  </div>
+
+</div>
+ </div>
+ </div>
+
+
+  <div class="a">
+  </div>
+    <style>
+    .a{
+      margin-top: 200px;
+    }
+    </style>
+ 
+
+{% endblock contenido %}
+
+
+
+

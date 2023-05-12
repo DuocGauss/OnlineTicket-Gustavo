@@ -1,0 +1,83 @@
+{% extends 'app_oracle/base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+{% if messages %}
+
+    {% for msg in messages %}
+       <script>
+           Swal.fire({
+           title: 'Exito!',
+           text: '{{msg}}',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           confirmButtonColor: 'Green'
+           }) 
+       </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<!--Espacio Productos Destacados-->
+  <!--Barra-->
+  <div class="container" style="margin-top: 50px;">
+    <div class="row">
+    </div>
+    <div class="row no-gutters">
+      <div class="col-sm-4">
+        <hr style="background-color: #ff8400; height: 8px;">
+      </div>
+      <div class="col-sm-8">
+        <hr style="background-color: #ff8400; height: 8px;">
+      </div>
+    </div>
+    <!--Productos-->
+    <div class="row" style="margin-top: 50px;">
+    <div class="col-sm-4 mt-5">
+    <div class="product-list__head">
+        <a href="AgregarProducto.html"><img class="img-thumbnail img-fluid card-productos" id="pa" src="{{prods.imagen.url}}"
+            alt="Producto"></a>
+        </div>
+      </div>
+       <div class="col-sm-4 mt-5">
+	   <h2>{{prods.nombre_est}}</h2>
+	   <p>{{prods.descripcion}} </p>
+	   <p style="margin-bottom: 0px;">{{prods.estado}}</p>
+	   <b style="color: orange; font-size: larger;">${{prods.valor}}</b>
+	   <br>
+	   <br>
+	   <br>
+	   <button type="button" class="btn btn-warning">Añadir al carrito de compras</button>
+	   </div>
+      </div>
+    </div>
+  </div>
+
+  
+ 
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------------------------------------------------>
+</div>
+        
+    </div>
+
+    </div>
+    
+   </div>
+    </div>
+    </div>
+  <!--distribuidores-->
+ 
+    
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+{% endblock contenido %}
